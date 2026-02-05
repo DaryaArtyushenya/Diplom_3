@@ -67,7 +67,7 @@ public class AuthorizationTests {
         }
         @Test
         @DisplayName("Логин через кнопку Войти на странице регистрации")
-        void loginViaButtonOnRegisterPage(){
+        void loginViaButtonOnRegisterPageTest(){
         User user = UserFactory.validUser();
         userApi.createUserApi(user);
         driver.get("https://stellarburgers.education-services.ru/register");

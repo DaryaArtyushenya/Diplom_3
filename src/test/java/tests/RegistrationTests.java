@@ -48,7 +48,7 @@ public class RegistrationTests {
     }
     @Test
     @DisplayName("Попытка создать пользователя с паролем меньше 6 символов")
-    void passwordLessThan6Characters(){
+    void passwordLessThan6CharactersTest(){
         User user = UserFactory.incorrectPassword();
         registrationPage.registration(user);
         assertTrue(driver.findElement(registrationPage.getPasswordErrorMessage()).isDisplayed());
