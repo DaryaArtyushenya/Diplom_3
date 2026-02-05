@@ -7,7 +7,7 @@ import model.User;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import pageObject.*;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -27,12 +27,15 @@ public class AuthorizationTests {
     UserApi userApi = new UserApi();
     @BeforeEach
     void setUp(){
-        if (browser.equalsIgnoreCase("chrome")){
-            driver=new ChromeDriver();
+        if (browser.equalsIgnoreCase("chrome")) {
+
+            driver = new ChromeDriver();
 
         } else if (browser.equalsIgnoreCase("yandex")) {
-            driver = new FirefoxDriver();
-            // driver = new YandexDriver;
+            System.setProperty("webdriver.chrome.driver", "/usr/local/bin/yandexdriver");
+            ChromeOptions options = new ChromeOptions();
+            options.setBinary("/Applications/Yandex.app/Contents/MacOS/Yandex");
+            driver = new ChromeDriver(options);
         }
         registrationPage = new RegistrationPage(driver);
         authorizationPage = new AuthorizationPage(driver);
@@ -50,6 +53,7 @@ public class AuthorizationTests {
            homePage.clickLoginButtonHomePage();
            authorizationPage.waitForAuthPageVisible();
            authorizationPage.authorization(user);
+           homePage.waitCreateBurgerHeader();
            assertTrue(driver.findElement(homePage.getCreateBurgerHeader()).isDisplayed());
            userApi.removeUserApi(user);
         }
@@ -62,6 +66,7 @@ public class AuthorizationTests {
             header.clickAccountButton();
             authorizationPage.waitForAuthPageVisible();
             authorizationPage.authorization(user);
+            homePage.waitCreateBurgerHeader();
             assertTrue(driver.findElement(homePage.getCreateBurgerHeader()).isDisplayed());
             userApi.removeUserApi(user);
         }
@@ -73,6 +78,7 @@ public class AuthorizationTests {
         driver.get("https://stellarburgers.education-services.ru/register");
         registrationPage.clickLoginButtonOnRegisterPage();
         authorizationPage.authorization(user);
+            homePage.waitCreateBurgerHeader();
         assertTrue(driver.findElement(homePage.getCreateBurgerHeader()).isDisplayed());
         userApi.removeUserApi(user);
         }
@@ -84,6 +90,7 @@ public class AuthorizationTests {
             driver.get("https://stellarburgers.education-services.ru/forgot-password");
             resetPasswordPage.clickLoginButtonOnResetPage();
             authorizationPage.authorization(user);
+            homePage.waitCreateBurgerHeader();
             assertTrue(driver.findElement(homePage.getCreateBurgerHeader()).isDisplayed());
             userApi.removeUserApi(user);
         }

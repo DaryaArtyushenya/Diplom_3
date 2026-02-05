@@ -4,6 +4,7 @@ import api.UserApi;
 import factory.UserFactory;
 import model.User;
 import org.junit.jupiter.api.DisplayName;
+import org.openqa.selenium.chrome.ChromeOptions;
 import pageObject.AuthorizationPage;
 import pageObject.RegistrationPage;
 import org.junit.jupiter.api.AfterEach;
@@ -11,7 +12,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -23,13 +23,21 @@ public class RegistrationTests {
     String browser = System.getProperty("browser", "chrome");
     @BeforeEach
     void setUp(){
-        if (browser.equalsIgnoreCase("chrome")){
-            driver=new ChromeDriver();
+        if (browser.equalsIgnoreCase("chrome")) {
+
+            driver = new ChromeDriver();
 
         } else if (browser.equalsIgnoreCase("yandex")) {
-            driver = new FirefoxDriver();
-           // driver = new YandexDriver;
+
+            System.setProperty("webdriver.chrome.driver", "/usr/local/bin/yandexdriver");
+
+            ChromeOptions options = new ChromeOptions();
+
+            options.setBinary("/Applications/Yandex.app/Contents/MacOS/Yandex");
+
+            driver = new ChromeDriver(options);
         }
+        driver.manage().window().maximize();
         driver.get("https://stellarburgers.education-services.ru/register");
         registrationPage = new RegistrationPage(driver);
         authorizationPage = new AuthorizationPage(driver);

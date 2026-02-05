@@ -2,14 +2,14 @@ package pageObject;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
-import javax.lang.model.element.Element;
-import java.util.List;
+import java.time.Duration;
+
 
 public class AccountPage {
     private WebDriver driver;
-    private By accountList = By.cssSelector(".Account_list__3KQQf.mb-20");
     private By profileTab = By.xpath("//a[@href=\"/account/profile\"]");
     private By orderHistoryTab = By.xpath("//a[@href=\"/account/order-history\"]");
     private By logoutButton = By.xpath("//button[text() =\"Выход\"]");
@@ -46,4 +46,13 @@ public class AccountPage {
     public void clickLogout(){
         driver.findElement(logoutButton).click();
     }
-}
+    public void waitForLogoutButton(){
+        new WebDriverWait(driver, Duration.ofSeconds(10))
+                .until(ExpectedConditions.visibilityOfElementLocated(logoutButton));
+    }
+    public void waitForProfileButton() {
+        new WebDriverWait(driver, Duration.ofSeconds(10))
+                .until(ExpectedConditions.visibilityOfElementLocated(profileTab));
+    }
+
+    }

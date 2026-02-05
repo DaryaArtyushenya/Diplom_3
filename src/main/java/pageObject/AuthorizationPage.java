@@ -37,5 +37,6 @@ public class AuthorizationPage {
         driver.findElement(emailAuthField).sendKeys(user.getEmail());
         driver.findElement(passwordAuthField).sendKeys(user.getPassword());
         driver.findElement(loginButton).click();
+
     }
 }
