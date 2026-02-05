@@ -1,5 +1,6 @@
 package pageObject;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -26,17 +27,6 @@ public class HomePage {
     private By fillingsTitle = By.xpath("//h2[text()='Начинки']");
     private By fillingOne = By.xpath("//img[@alt='Соус Spicy-X']");
 
-    public By getBunTab() {
-        return bunTab;
-    }
-
-    public By getSauceTab() {
-        return sauceTab;
-    }
-
-    public By getFillingsTab() {
-        return fillingsTab;
-    }
 
     public By getBunTitle() {
         return bunTitle;
@@ -65,17 +55,19 @@ public class HomePage {
     public By getCreateBurgerHeader() {
         return createBurgerHeader;
     }
-
+    @Step("Клик на кнопку логина на Домашней странице")
     public void clickLoginButtonHomePage(){
         driver.findElement(loginButtonHomePage).click();
     }
+    @Step("Клик на табу Булки")
     public void clickBunTab(){
         driver.findElement(bunTab).click();
     }
-
+    @Step("Клик на табу Соусы")
     public void clickSauceTab(){
         driver.findElement(sauceTab).click();
     }
+    @Step("Клик на табу Начинки")
     public void clickFillingsTab(){
         driver.findElement(fillingsTab).click();
     }

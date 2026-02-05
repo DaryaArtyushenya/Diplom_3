@@ -1,6 +1,7 @@
 package pageObject;
 
 import com.github.javafaker.Faker;
+import io.qameta.allure.Step;
 import model.User;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -33,6 +34,7 @@ public class AuthorizationPage {
         new WebDriverWait(driver, Duration.ofSeconds(10))
                 .until(ExpectedConditions.visibilityOfElementLocated(authBlock));
     }
+    @Step("Шаг авторизация пользователя")
     public void authorization(User user){
         driver.findElement(emailAuthField).sendKeys(user.getEmail());
         driver.findElement(passwordAuthField).sendKeys(user.getPassword());

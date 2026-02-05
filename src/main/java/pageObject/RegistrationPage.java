@@ -1,6 +1,7 @@
 package pageObject;
 
 import com.github.javafaker.Faker;
+import io.qameta.allure.Step;
 import model.User;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -23,7 +24,7 @@ public class RegistrationPage {
     public By getPasswordErrorMessage() {
         return passwordErrorMessage;
     }
-
+    @Step("Регистрация")
     public void registration(User user){
         driver.findElement(nameRegisterField).sendKeys(user.getName());
         driver.findElement(emailRegisterField).sendKeys(user.getEmail());
@@ -31,7 +32,7 @@ public class RegistrationPage {
         driver.findElement(registerButton).click();
 
     }
-
+    @Step("Клик на кнопку Войти на странице регистрации")
     public void clickLoginButtonOnRegisterPage(){
         driver.findElement(loginButtonOnRegisterPage).click();
     }
