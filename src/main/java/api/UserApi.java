@@ -23,8 +23,15 @@ public class UserApi {
     }
     @Step("Удаление пользователя")
     public void removeUserApi(User user){
-        Response loginResponse = loginUserApi(user);
+        Response loginResponse;
+        try {
+            loginResponse = loginUserApi(user);
+    } catch (Exception e) {
+            return; // сервер не отвечает → удалять нечего
+             }
+        if (loginResponse == null || loginResponse.statusCode() != 200) { return; }
         String token = loginResponse.jsonPath().getString("accessToken");
+        if (token == null) { return; }
         given()
                 .header("Authorization", token)
                 .header("Content-type","application/json")

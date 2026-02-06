@@ -52,6 +52,18 @@ public class HomePage {
         return fillingOne;
     }
 
+    public By getBunTab() {
+        return bunTab;
+    }
+
+    public By getSauceTab() {
+        return sauceTab;
+    }
+
+    public By getFillingsTab() {
+        return fillingsTab;
+    }
+
     public By getCreateBurgerHeader() {
         return createBurgerHeader;
     }
@@ -88,6 +100,7 @@ public class HomePage {
         new WebDriverWait(driver, Duration.ofSeconds(10))
                 .until(ExpectedConditions.visibilityOfElementLocated(fillingsTab));
     }
+
 
 }
 

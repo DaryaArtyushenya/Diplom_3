@@ -24,14 +24,19 @@ public class RegistrationPage {
     public By getPasswordErrorMessage() {
         return passwordErrorMessage;
     }
-    @Step("Регистрация")
-    public void registration(User user){
+    @Step("Ввод данных для регистрации")
+    public void regData(User user){
         driver.findElement(nameRegisterField).sendKeys(user.getName());
         driver.findElement(emailRegisterField).sendKeys(user.getEmail());
         driver.findElement(passwordRegisterField).sendKeys(user.getPassword());
-        driver.findElement(registerButton).click();
 
     }
+    @Step("Клик по кнопке регистрации")
+    public void clickRegButton(){
+        driver.findElement(registerButton).click();
+    }
+
+
     @Step("Клик на кнопку Войти на странице регистрации")
     public void clickLoginButtonOnRegisterPage(){
         driver.findElement(loginButtonOnRegisterPage).click();
